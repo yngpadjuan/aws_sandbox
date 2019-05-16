@@ -1,11 +1,10 @@
+#!/bin/bash
+
 #Ubuntu 18 Apache Guacamole 1.0.0
 #Docker Guac server Ubuntu 18
 
 #install docker
 sudo apt install docker.io
-
-#install mysql
-sudo apt install mysql-server
 
 #start/enable docker/mysql daemon
 sudo systemctl start docker
@@ -33,5 +32,4 @@ sudo docker exec mysql /bin/sh -c 'mysql -u guacamole -pguacamole < /initdb.sql'
 sudo docker run --name guacamole --link some-guacd:guacd --link mysql:mysql -e MYSQL_DATABASE=guacamole -e MYSQL_USER=guacamole -e MYSQL_PASSWORD=guacamole -e MYSQL_ROOT_PASSWORD=guacamole -d -p 8080:8080 guacamole/guacamole 
 
 #start containters on system boot
-sudo docker update --restart=always $(docker pd -a)
-
+sudo docker update --restart=always $(docker ps -aq)
