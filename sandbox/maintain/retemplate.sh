@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#aws ec2 describe-images --executable-users self
-
-
 #user input image
 echo Template Provisioning. Please input Image ID:
 
